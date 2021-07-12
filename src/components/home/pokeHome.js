@@ -10,7 +10,7 @@ function PokeHome(){
     const [pokemonHome,setPokemonHome] = useState([])
     const [pokeEscolhas,setPokeEscolhas] = useState([])
     const [ponto,setPonto] = useState(0)
-    const [vida,setVida] = useState(6)
+    const [vida,setVida] = useState(1)
 
     useEffect(() =>{
         gerarPokemon()
@@ -36,31 +36,30 @@ function PokeHome(){
       }
 
 
-    const  gerarEscolhas = (name) => {
+    const  gerarEscolhas = (name) => {//Cria escolhas para o jogador
         const escolha = []
         let i = 0
-            while(i < 3){
-                const random = Math.floor((Math.random() * 898))
 
-                axios   
-                .get(BASE_URL+`pokemon/${random}`)
-                .then((resposta) =>{
-
+        while(i < 3){
+            const random = Math.floor((Math.random() * 898))
+            
+            axios   
+            .get(BASE_URL+`pokemon/${random}`)
+            .then((resposta) =>{
+                if(!escolha.includes(resposta.data.name || !pokemonHome.nome.includes(resposta.data.name))){
                     escolha.push(resposta.data.name)
-
+                    i = i-1
                     if(escolha.length === 3){
                         escolha.push(name)
                         criarEscolha(escolha)
                     }
-                })
-                .catch((erro)=> {
-                   alert(erro)
-                })
+                }
+            })
 
-                i++ 
-            }
+            i++ 
+        }
             
-      }
+    }
 
     const  criarEscolha = (poke) => { //Cria lista de opções
     setPokeEscolhas(ordenar(poke))
@@ -77,6 +76,7 @@ function PokeHome(){
             setVida(vida-1)
         }
         setPokeEscolhas([])
+        setPokemonHome([])
         gerarPokemon()
 
     }
