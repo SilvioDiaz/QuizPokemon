@@ -10,7 +10,7 @@ function PokeHome(){
     const [pokemonHome,setPokemonHome] = useState([])
     const [pokeEscolhas,setPokeEscolhas] = useState([])
     const [ponto,setPonto] = useState(0)
-    const [vida,setVida] = useState(1)
+    const [vida,setVida] = useState(6)
 
     useEffect(() =>{
         gerarPokemon()
