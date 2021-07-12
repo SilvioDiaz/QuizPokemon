@@ -1,6 +1,6 @@
 import Pokehome from "./home/pokeHome"
 import React, {useState} from "react"
-import { Button, Div } from "./home/styled"
+import { Button, Div,SocialButtons,SocialArea } from "./home/styled"
 
 import {
     TelegramShareButton,
@@ -8,6 +8,11 @@ import {
     WhatsappShareButton,
     TwitterShareButton
 } from "react-share"
+
+import Facebook from "../img/Facebook.png"
+import Telegram from "../img/Telegram.png"
+import Twitter from "../img/Twitter.png"
+import Whatsapp from "../img/Whatsapp.png"
 
 function FimdeJogo(props){
 
@@ -27,25 +32,27 @@ function FimdeJogo(props){
                 <h1>Fim de Jogo</h1>
                 <h2>A sua pontuação foi de: {props.ponto}</h2>
                 <Button onClick = {resetJogo}>Recomeçar</Button>
+                <h2>Compartilhe sua pontuação</h2>
+                <SocialArea>
+                    <TelegramShareButton url = {window.location.href} title = {socialMessage}>
+                            <SocialButtons src = {Telegram}/>
+                        </TelegramShareButton>
 
-                <TelegramShareButton url = {window.location.href} title = {socialMessage}>
-                    <p>Telegram</p>
-                </TelegramShareButton>
+                        <FacebookShareButton url = {window.location.href}
+                            quote = {socialMessage}
+                            hashtag = {"#contrateSilvio,#PokeQuiz"}
+                        >
+                            <SocialButtons src = {Facebook}/>
+                        </FacebookShareButton>
 
-                <FacebookShareButton url = {window.location.href}
-                    quote = {socialMessage}
-                    hashtag = {"#contrateSilvio,#PokeQuiz"}
-                 >
-                     <p>Facebook</p>
-                </FacebookShareButton>
+                        <WhatsappShareButton url = {window.location.href} title = {socialMessage}>
+                            <SocialButtons src = {Whatsapp}/>
+                        </WhatsappShareButton>
 
-                <WhatsappShareButton url = {window.location.href} title = {socialMessage}>
-                    <p>Whatsapp</p>
-                </WhatsappShareButton>
-
-                <TwitterShareButton url = {window.location.href} title = {socialMessage} hashtag = {"#contrateSilvio,#PokeQuiz"}>
-                    <p>Twitter</p>
-                </TwitterShareButton>
+                        <TwitterShareButton url = {window.location.href} title = {socialMessage} hashtag = {"#contrateSilvio,#PokeQuiz"}>
+                            <SocialButtons src = {Twitter}/>
+                        </TwitterShareButton>
+                </SocialArea>
             </Div>
 
         )

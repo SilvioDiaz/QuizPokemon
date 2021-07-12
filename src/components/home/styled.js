@@ -28,9 +28,19 @@ export const Div = styled.div`
     align-items: center;
     justify-content: center;
     color:#1F1F1F;
-    height:100vh
+    height:100vh;
 `
 export const DivResposta = styled.div`
     display: grid;
     grid-template-columns: 2fr 2fr;
+`
+export const SocialButtons = styled.img`
+    width: 50px;
+`
+export const SocialArea = styled.div`
+    margin:1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-gap: 1rem;
+
 `
