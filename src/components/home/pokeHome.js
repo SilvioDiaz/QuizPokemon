@@ -30,7 +30,7 @@ function PokeHome(){
             gerarEscolhas(resposta.data.name)
           })
           .catch((erro) => {
-            alert(erro)
+            gerarPokemon()
           })
           
       }
@@ -46,14 +46,17 @@ function PokeHome(){
             axios   
             .get(BASE_URL+`pokemon/${random}`)
             .then((resposta) =>{
-                if(!escolha.includes(resposta.data.name || !pokemonHome.nome.includes(resposta.data.name))){
-                    escolha.push(resposta.data.name)
-                    i = i-1
-                    if(escolha.length === 3){
-                        escolha.push(name)
-                        criarEscolha(escolha)
-                    }
+
+                escolha.push(resposta.data.name)
+
+                if(escolha.length === 3){
+
+                    escolha.push(name)
+                    criarEscolha(escolha)
                 }
+            })
+            .catch((err) => {
+                gerarEscolhas(name)
             })
 
             i++ 
@@ -62,7 +65,16 @@ function PokeHome(){
     }
 
     const  criarEscolha = (poke) => { //Cria lista de opções
-    setPokeEscolhas(ordenar(poke))
+
+        const findDuplicates = arr => poke.filter((item, index) => poke.indexOf(item) != index)
+
+        if(findDuplicates().length > 0){
+            gerarEscolhas(poke[3])
+        }else{
+            setPokeEscolhas(ordenar(poke))
+        }
+        
+
     }
 
     const confirmarNome = (event) => { // Verifica resposta
