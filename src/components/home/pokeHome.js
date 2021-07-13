@@ -10,7 +10,8 @@ function PokeHome(){
     const [pokemonHome,setPokemonHome] = useState([])
     const [pokeEscolhas,setPokeEscolhas] = useState([])
     const [ponto,setPonto] = useState(0)
-    const [vida,setVida] = useState(6)
+    const [vida,setVida] = useState(3)
+
 
     useEffect(() =>{
         gerarPokemon()
@@ -81,6 +82,7 @@ function PokeHome(){
         if(event.target.value === pokemonHome.nome){
             alert(`Você acertou o nome do ${Capitalize(pokemonHome.nome)}`)
             setPonto(ponto+10)
+
             
         }else{
             alert(`Você errou o nome, o certo é ${Capitalize(pokemonHome.nome)}`)
@@ -90,6 +92,7 @@ function PokeHome(){
         setPokeEscolhas([])
         setPokemonHome([])
         gerarPokemon()
+
 
     }
 
